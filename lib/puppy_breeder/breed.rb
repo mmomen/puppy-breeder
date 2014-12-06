@@ -1,45 +1,23 @@
 module PuppyBreeder
   class Breed
-    attr_reader :breed
-    def initialize
-      @breed = Hash.new
+    attr_reader :type, :price
+    @@breeds = Hash.new
+
+    def initialize(type, price)
+      @type = type
+      @price = price
     end
-    def set_breed_price(type, price)
-      @breed[:type] = type
+
+    def self.set_breed_price(type, price)
+      @@breeds[type] = Breed.new(type, price)
+    end
+
+    def self.get_breed(type)
+      @@breeds[type]
+    end
+
+    def self.clear_data
+      @@breeds = Hash.new
     end
   end
 end
-
-test = PuppyBreeder::Breed.new
-test.set_breed_price("a", 1)
-puts test.breed[:type]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=begin
-# module PuppyBreeder
-  class Breed
-    def initalize
-      @breed = Hash.new
-    end
-    def set_breed_price(type, price)
-      @breed[type] = type
-    end
-  end
-# end
-
-# test = PuppyBreeder::Breed.new
-test = Breed.new
-test.set_breed_price("aaa", 50)
-=end
